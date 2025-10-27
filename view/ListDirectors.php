@@ -1,4 +1,4 @@
-
+<!-- création de l'objet php -->
 <?php ob_start(); ?>
 
 <p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> réalisateurs </p>

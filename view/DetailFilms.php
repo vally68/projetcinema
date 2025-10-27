@@ -1,37 +1,44 @@
-<?php 
 
-require "../model/Connect.php";
-require "../controller/CinemaController.php";
-?>
+
 <?php ob_start(); ?>
-<p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount () ?> films </p>
+
+<p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> films </p>
 
 <table class="uk-table uk-table-stripped">
     <thead>
         <tr>
             <th>Titre</th>
-            <th> ANNEE SORTIE</th>
+            <th> Date de sortie</th>
+            <th> Durée</th>
+            <th> résumé</th>
+            <th> note</th>
+            <th> Affiche</th>
         </tr>
     </thead>
     <tbody>
         <?php
-            foreach($requete->fetchAll() as $film) { ?>
+            foreach($requete->fetchAll() as $defilm) { ?>
                 <tr>
-                    <td><?= $film["title"] ?></td>
-                    <td> <?= $film["release_year_france"] ?></td>
+                    <td><?= $defilm["title"] ?></td>
+                    <td> <?= $defilm["release_year_france"] ?></td>
+                    <td> <?= $defilm["duration"] ?></td>
+                    <td> <?= $defilm["synopsis"] ?></td>
+                    <td> <?= $defilm["note"] ?></td>
+                    <td>
+                    <img src="<?= ($defilm["poster"]) ?>" 
+                 alt="Affiche du film <?= ($defilm["poster"]) ?>" 
+                 style="width:100px; height:auto;">
+        </td>
                 </tr>
             <?php } ?>
     </tbody>
 </table>
 
 <?php
-
 $titre = "liste des films";
-$titre_secondaire = "liste des films";
+$titre_secondaire = "détail du film";
 $contenu = ob_get_clean();
-require "view/template.php";
-require "model/Connect.php";
-require "controller/CinemaController.php";
+
 ?>
 
 <!doctype html>
@@ -51,7 +58,7 @@ require "controller/CinemaController.php";
     <div id="wrapper" class="uk-container uk-container-expand">
         <main>
             <div id="contenu">
-                <h1 class ="uk-heading-divider">PDO Cinema</h1>
+                <h1 class ="uk-heading-divider">Projet Cinema</h1>
                 <h2 class ="uk-heading-bullet"><?= $titre_secondaire ?></h2>
                 <?= $contenu ?>
             </div>
