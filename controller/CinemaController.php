@@ -20,7 +20,7 @@ class CinemaController {
         
     }
 
-     public function ListActor()  {
+     public function ListActors()  {
 
         $pdo= Connect:: seConnecter();
         $requete = $pdo->query("
@@ -33,7 +33,24 @@ class CinemaController {
         ");
      
 
-        require "view/ListActor.php";
+        require "view/ListActors.php";
+        
+    }
+
+         public function ListDirectors()  {
+
+        $pdo= Connect:: seConnecter();
+        $requete = $pdo->query("
+     SELECT DISTINCT
+            person.first_name,
+            person.last_name,
+        CONCAT(person.first_name, ' ', person.last_name) AS Nom_prenom
+        FROM director
+        INNER JOIN person ON person.id_people = director.id_people
+        ");
+     
+
+        require "view/ListDirectors.php";
         
     }
 }
