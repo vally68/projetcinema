@@ -17,21 +17,80 @@ $contenu = ob_get_clean();
   <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <link rel="stylesheet" href="style.css">
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../public/css/style.css">
+  <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
   <title><?= $titre ?></title>
-  <script src="script.js"></script>
+  <script src="../public/js/app.js" async></script>
 </head>
 <body>
-    <nav class="uk-navbar-container" uk-navbar uk-sticky>
-    </nav>
+   <nav class="menu">
+		
+					<ul>
+						<li><a href="index.html"><label for="site-search"></label> <input type="search" id="site-search" name="q" /></a></li>
+						<li><a href="#tradition">FILM</a></li>
+						<li><a href="#services">REALISATEUR</a></li>
+						<li><a href="index.html">ACTEUR</a></li>
+						<li><a href="index.html">Connexion</a></li>
+					</ul>
+				
+				</nav>
     <div id="wrapper" class="uk-container uk-container-expand">
         <main>
-            <div id="contenu">
-                <h1 class ="uk-heading-divider">Projet Cinema</h1>
-                <h2 class ="uk-heading-bullet"><?= $titre_secondaire ?></h2>
-                <?= $contenu ?>
+<p>CINEMA WEBSITE</p>
+<p>
+    <label for="site-search"></label>
+        <input type="search" id="site-search" name="q" />
+            <button>Search</button>
+</p>
+<button></button>
+<!-- Conteneur principal pour le carrousel -->
+    <div class="container">
+        <!-- Élément carrousel -->
+        <div class="carousel">
+            <!-- Conteneur interne pour les diapositives -->
+            <div class="carousel-inner">
+                <!-- Première diapositive -->
+                <div class="slide">
+                    <!-- Image de la première diapositive -->
+                    <img src="https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Image 1">
+                </div>
+                <!-- Deuxième diapositive -->
+                <div class="slide">
+                    <!-- Image de la deuxième diapositive -->
+                    <img src="https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2p"
+                        alt="Image 2">
+                </div>
+                <!-- Troisième diapositive -->
+                <div class="slide">
+                    <!-- Image de la troisième diapositive -->
+                    <img src="https://images.pexels.com/photos/3183132/pexels-photo-3183132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Image 3">
+                </div>
+                <!-- Quatrième diapositive -->
+                <div class="slide">
+                    <!-- Image de la quatrième diapositive -->
+                    <img src="https://images.pexels.com/photos/2739013/pexels-photo-2739013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Image 4">
+                </div>
+                <!-- Cinquième diapositive -->
+                <div class="slide">
+                    <!-- Image de la cinquième diapositive -->
+                    <img src="https://images.pexels.com/photos/3555161/pexels-photo-3555161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Image 5">
+                </div>
             </div>
+            <!-- Conteneur pour les boutons de navigation -->
+            <div class="carousel-controls">
+                <!-- Bouton pour passer à la diapositive précédente -->
+                <button id="prev">Précédent</button>
+                <!-- Bouton pour passer à la diapositive suivante -->
+                <button id="next">Suivant</button>
+            </div>
+            <!-- Conteneur pour les points de navigation -->
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
         </main>
     </div>
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">

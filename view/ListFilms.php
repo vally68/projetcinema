@@ -4,7 +4,7 @@
 
 <p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> films </p>
 
-<table class="uk-table uk-table-stripped">
+<table class="table table-striped  table-hover">
     <thead>
         <tr>
             <th>Titre</th>
@@ -36,7 +36,7 @@ $contenu = ob_get_clean();
   <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link href="public/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="public/css/style.css">
   <title><?= $titre ?></title>
   <script src="script.js"></script>

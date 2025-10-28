@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-<p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> films </p>
 
-<table class="table table-striped">
+
+<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Titre</th>
@@ -50,7 +50,7 @@ $contenu = ob_get_clean();
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <link rel="stylesheet" href="style.css">
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="public/css/bootstrap.min.css" rel="stylesheet">
   <title><?= $titre ?></title>
   <script src="script.js"></script>
 </head>
