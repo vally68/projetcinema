@@ -3,7 +3,7 @@
 
 <p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> acteurs </p>
 
-<table class="uk-table uk-table-stripped">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>Prénom</th>
