@@ -7,7 +7,7 @@
     // Utilisation de la directive "use strict" pour activer le mode strict en JavaScript
     // Cela implique une meilleure gestion des erreurs et une syntaxe plus stricte pour le code
     "use stict"
-    // Déclare la constante pour la durée de chaque slide
+    // Déclare la constante pour la durée de chaque slide en millisecondes
     const slideTimeout = 5000;
     // Récupère les boutons de navigation
     const prev = document.querySelector('#prev');
