@@ -18,7 +18,7 @@
                 <tr>
                     <td><?= $listgenre["genre"] ?></td>
                     <td><?= $listgenre["nombre_film_par_genre"] ?></td>
-                    <td><?= $listgenre["titre"] ?></td>   <?php //ici faire liste liés au film?>
+                    <td><?= $listgenre["titres"] ?></td>   <?php //ici faire liste liés au film?>
                     
                 </tr>
             <?php } ?>

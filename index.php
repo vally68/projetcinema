@@ -43,6 +43,10 @@ if (isset($_GET["action"])) {
             $ctrlCinema->ListTypeFilms();
             break;
 
+            case "Connexion":
+           // $ctrlCinema->ListTypeFilms();
+            break;
+
         default:
            $ctrlHome->PageHome();
              break;

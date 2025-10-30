@@ -59,10 +59,10 @@ public function DetailFilms($id) {
 
         $pdo= Connect:: seConnecter();
         $requeteGF= $pdo->query("
-        SELECT 
+       SELECT 
     film_type.labelled AS genre,
     COUNT(film.id_film) AS nombre_film_par_genre,
-    film.title AS titre
+    GROUP_CONCAT(film.title SEPARATOR ', ') AS titres
 FROM 
     film
 INNER JOIN 
@@ -70,9 +70,10 @@ INNER JOIN
 INNER JOIN 
     film_type ON belong.id_type_film = film_type.id_type_film
 GROUP BY
-    film_type.labelled, film.title
+    film_type.labelled
 ORDER BY 
     nombre_film_par_genre DESC;
+
         ");
 
         require "view/ListTypeFilms.php";

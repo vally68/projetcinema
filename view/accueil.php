@@ -22,18 +22,23 @@ $contenu = ob_get_clean();
   <title><?= $titre ?></title>
   <script src="../public/js/app.js" async></script>
 </head>
-<body>
-   <nav class="menu">
+<header>
+
+                <nav class="menu">
 		
 					<ul>
-						<li><a href="index.html"><label for="site-search"></label> <input type="search" id="site-search" name="q" /></a></li>
-						<li><a href="#tradition">FILM</a></li>
-						<li><a href="#services">REALISATEUR</a></li>
-						<li><a href="index.html">ACTEUR</a></li>
-						<li><a href="index.html">Connexion</a></li>
+						<li><a href="#"><label for="site-search"></label> <input type="search" id="site-search" name="q" /></a></li>
+						<li><a href="../index.php?action=ListFilms">FILM</a></li>
+						<li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
+						<li><a href="../index.php?action=ListActors">ACTEUR</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms">GENRE DE FILMS</a></li>
+						<li><a href="../index.php?action=Connexion">Connexion</a></li>
 					</ul>
 				
 				</nav>
+</header>
+<body>
+   
     <div id="wrapper" class="uk-container uk-container-expand">
         <main>
 <p>CINEMA WEBSITE</p>
