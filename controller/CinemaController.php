@@ -54,31 +54,35 @@ public function DetailFilms($id) {
    
     require "view/DetailFilms.php";
 }
+
 //requete liste genre film
-    public function ListTypeFilms()  {
+
+    public function ListTypeFilms($id)  {
 
         $pdo= Connect:: seConnecter();
-        $requeteGF= $pdo->query("
-       SELECT 
+        $requeteGF = $pdo->prepare("
+
+ SELECT 
     film_type.labelled AS genre,
-    COUNT(film.id_film) AS nombre_film_par_genre,
-    GROUP_CONCAT(film.title SEPARATOR ', ') AS titres
+    film.id_film AS nombre_film_par_genre,
+    film.title   AS titres
 FROM 
     film
 INNER JOIN 
     belong ON film.id_film = belong.id_film
 INNER JOIN 
     film_type ON belong.id_type_film = film_type.id_type_film
-GROUP BY
-    film_type.labelled
-ORDER BY 
-    nombre_film_par_genre DESC;
+    WHERE film_type.id_type_film = :id
 
         ");
 
-        require "view/ListTypeFilms.php";
+    $requeteGF->execute(["id" => $id]);
+    
+ 
+    require "view/ListTypeFilms.php";
         
     }
+
 
 }
 

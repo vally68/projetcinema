@@ -40,7 +40,7 @@ if (isset($_GET["action"])) {
             break;
 
         case "ListTypeFilms":
-            $ctrlCinema->ListTypeFilms();
+            $ctrlCinema->ListTypeFilms($id);
             break;
 
             case "Connexion":

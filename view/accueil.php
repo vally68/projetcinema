@@ -28,10 +28,27 @@ $contenu = ob_get_clean();
 		
 					<ul>
 						<li><a href="#"><label for="site-search"></label> <input type="search" id="site-search" name="q" /></a></li>
-						<li><a href="../index.php?action=ListFilms">FILM</a></li>
+						
 						<li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
 						<li><a href="../index.php?action=ListActors">ACTEUR</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms">GENRE DE FILMS</a></li>
+                        <li><a href="../index.php?action=ListFilms">FILM</a></li>
+                        <!-- <li><a href="../index.php?action=ListTypeFilms&id=4">ACTION</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=3">AVENTURE</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=6">DRAME</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=2">FANTASTIQUE</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=7">FANTASY</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=1">SCIENCE-FICTION</a></li>
+                        <li><a href="../index.php?action=ListTypeFilms&id=5">SUPER-HEROS</a></li> -->
+                        <li>
+                          <select class="form-select" id="id_type_film" name="labelled">
+                             <option value="" <?= empty($id) ? 'selected' : '' ?>>-- Sélectionner un genre de film --</option>
+                             <?php foreach ($id as $valgenrefilm):?>
+                            <option value="<?= htmlspecialchars($valgenrefilm['id_type_film']) ?>" 
+                            <?= (isset($id) && $requeteGF == $valgenrefilm['id_type_film']) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($valgenrefilm['labelled']) ?>
+                            </option>
+                            <?php endforeach; ?>               
+                            </select> </li>
 						<li><a href="../index.php?action=Connexion">Connexion</a></li>
 					</ul>
 				
