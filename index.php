@@ -39,9 +39,13 @@ if (isset($_GET["action"])) {
             $ctrlPerson->ListDirectors();
             break;
 
-        default:
-            $ctrlHome->PageHome();
+        case "ListTypeFilms":
+            $ctrlCinema->ListTypeFilms();
             break;
+
+        default:
+           $ctrlHome->PageHome();
+             break;
     }
 } else {
     // Si aucune action n’est définie, on affiche la page d’accueil par défaut

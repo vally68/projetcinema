@@ -52,31 +52,31 @@ $contenu = ob_get_clean();
                 <!-- Première diapositive -->
                 <div class="slide">
                     <!-- Image de la première diapositive -->
-                    <img src="https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img src="../public/img/scene/01.jpg"
                         alt="Image 1">
                 </div>
                 <!-- Deuxième diapositive -->
                 <div class="slide">
                     <!-- Image de la deuxième diapositive -->
-                    <img src="https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2p"
+                    <img src="../public/img/scene/02.png"
                         alt="Image 2">
                 </div>
                 <!-- Troisième diapositive -->
                 <div class="slide">
                     <!-- Image de la troisième diapositive -->
-                    <img src="https://images.pexels.com/photos/3183132/pexels-photo-3183132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img src="../public/img/scene/03.jpg"
                         alt="Image 3">
                 </div>
                 <!-- Quatrième diapositive -->
                 <div class="slide">
                     <!-- Image de la quatrième diapositive -->
-                    <img src="https://images.pexels.com/photos/2739013/pexels-photo-2739013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img src="../public/img/scene/04.jpg"
                         alt="Image 4">
                 </div>
                 <!-- Cinquième diapositive -->
                 <div class="slide">
                     <!-- Image de la cinquième diapositive -->
-                    <img src="https://images.pexels.com/photos/3555161/pexels-photo-3555161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img src="../public/img/scene/05.jpg"
                         alt="Image 5">
                 </div>
             </div>

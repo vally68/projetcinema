@@ -45,7 +45,7 @@ body {
     /* Largeur de l'image est de 100% */
     height: 100%;
     /* Hauteur de l'image est de 100% */
-    object-fit: cover;
+    object-fit: fill;
     /* Couvre tout l'espace disponible */
 }
 /* Définition des boutons de contrôle du carousel */
