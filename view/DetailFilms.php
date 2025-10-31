@@ -26,7 +26,7 @@
                     <td> <?= $defilm["synopsis"] ?></td>
                     <td> <?= $defilm["note"] ?></td>
 <td>
-    <?php echo '<img class="img-thumbnail" src="public/img/' . $defilm['poster'] . '" style="display: block; margin: 0 auto; width: 35%; height: 35%;">'; ?>
+    <?php echo '<img class="img-thumbnail" src="public/' . $defilm['poster'] . '" style="display: block; margin: 0 auto; width: 35%; height: 35%;">'; ?>
 </td>
 
                     <td> <?php foreach($requetecasting as $acteur): ?> <?= $acteur['first_name'] . " " . $acteur['acteur'] ?> 

@@ -12,7 +12,7 @@ class CinemaController {
 
         $pdo= Connect:: seConnecter();
         $requete = $pdo->query("
-        SELECT title, release_year_france
+        SELECT id_film,title, release_year_france
         FROM film
         ");
 

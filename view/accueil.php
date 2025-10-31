@@ -1,120 +1,88 @@
-
-
-<?php ob_start(); ?>
-
-
-
 <?php
-$titre = "acceuil";
-$titre_secondaire = "page d'acceuil";
-$contenu = ob_get_clean();
+require_once "../model/connect.php"; // chemin relatif à adapter si nécessaire
+use Model\Connect;
 
+// Connexion à la base
+$pdo = Connect::seConnecter();
+
+// Récupérer tous les genres
+$stmt = $pdo->query("SELECT id_type_film, labelled FROM film_type");
+$allGenres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+$titre = "Accueil";
+$titre_secondaire = "Page d'accueil";
 ?>
 
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <link rel="stylesheet" href="../public/css/style.css">
-  <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-  <title><?= $titre ?></title>
-  <script src="../public/js/app.js" async></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <link rel="stylesheet" href="../public/css/style.css">
+    <title><?= $titre ?></title>
+    <script src="../public/js/app.js" async></script>
 </head>
-<header>
-
-                <nav class="menu">
-		
-					<ul>
-						<li><a href="#"><label for="site-search"></label> <input type="search" id="site-search" name="q" /></a></li>
-						
-						<li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
-						<li><a href="../index.php?action=ListActors">ACTEUR</a></li>
-                        <li><a href="../index.php?action=ListFilms">FILM</a></li>
-                        <!-- <li><a href="../index.php?action=ListTypeFilms&id=4">ACTION</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=3">AVENTURE</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=6">DRAME</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=2">FANTASTIQUE</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=7">FANTASY</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=1">SCIENCE-FICTION</a></li>
-                        <li><a href="../index.php?action=ListTypeFilms&id=5">SUPER-HEROS</a></li> -->
-                        <li>
-                          <select class="form-select" id="id_type_film" name="labelled">
-                             <option value="" <?= empty($id) ? 'selected' : '' ?>>-- Sélectionner un genre de film --</option>
-                             <?php foreach ($id as $valgenrefilm):?>
-                            <option value="<?= htmlspecialchars($valgenrefilm['id_type_film']) ?>" 
-                            <?= (isset($id) && $requeteGF == $valgenrefilm['id_type_film']) ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($valgenrefilm['labelled']) ?>
-                            </option>
-                            <?php endforeach; ?>               
-                            </select> </li>
-						<li><a href="../index.php?action=Connexion">Connexion</a></li>
-					</ul>
-				
-				</nav>
-</header>
 <body>
-   
-    <div id="wrapper" class="uk-container uk-container-expand">
-        <main>
-<p>CINEMA WEBSITE</p>
-<p>
-    <label for="site-search"></label>
-        <input type="search" id="site-search" name="q" />
+<header>
+    <nav class="menu">
+        <ul>
+            <li>
+                <a href="#">
+                    <label for="site-search"></label>
+                    <input type="search" id="site-search" name="q" />
+                </a>
+            </li>
+            <li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
+            <li><a href="../index.php?action=ListActors">ACTEUR</a></li>
+            <li><a href="../index.php?action=ListFilms">FILM</a></li>
+            <li>
+                <!-- Select genres -->
+                <select class="form-select" id="id_type_film" name="id_type_film" onchange="if(this.value) window.location.href=this.value;">
+                    <option value="">-- Sélectionner un genre de film --</option>
+                    <?php foreach ($allGenres as $genre): ?>
+                        <option value="../index.php?action=ListTypeFilms&id=<?= $genre['id_type_film'] ?>">
+                            <?= htmlspecialchars($genre['labelled']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+            <li><a href="../index.php?action=Connexion">Connexion</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div id="wrapper" class="uk-container uk-container-expand">
+    <main>
+        <h1><?= $titre_secondaire ?></h1>
+
+        <p>CINEMA WEBSITE</p>
+        <p>
+            <label for="site-search"></label>
+            <input type="search" id="site-search" name="q" />
             <button>Search</button>
-</p>
-<button></button>
-<!-- Conteneur principal pour le carrousel -->
-    <div class="container">
-        <!-- Élément carrousel -->
-        <div class="carousel">
-            <!-- Conteneur interne pour les diapositives -->
-            <div class="carousel-inner">
-                <!-- Première diapositive -->
-                <div class="slide">
-                    <!-- Image de la première diapositive -->
-                    <img src="../public/img/scene/01.jpg"
-                        alt="Image 1">
+        </p>
+
+        <!-- Carrousel -->
+        <div class="container">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="slide"><img src="../public/img/scene/01.jpg" alt="Image 1"></div>
+                    <div class="slide"><img src="../public/img/scene/02.png" alt="Image 2"></div>
+                    <div class="slide"><img src="../public/img/scene/03.jpg" alt="Image 3"></div>
+                    <div class="slide"><img src="../public/img/scene/04.jpg" alt="Image 4"></div>
+                    <div class="slide"><img src="../public/img/scene/05.jpg" alt="Image 5"></div>
                 </div>
-                <!-- Deuxième diapositive -->
-                <div class="slide">
-                    <!-- Image de la deuxième diapositive -->
-                    <img src="../public/img/scene/02.png"
-                        alt="Image 2">
+                <div class="carousel-controls">
+                    <button id="prev">Précédent</button>
+                    <button id="next">Suivant</button>
                 </div>
-                <!-- Troisième diapositive -->
-                <div class="slide">
-                    <!-- Image de la troisième diapositive -->
-                    <img src="../public/img/scene/03.jpg"
-                        alt="Image 3">
-                </div>
-                <!-- Quatrième diapositive -->
-                <div class="slide">
-                    <!-- Image de la quatrième diapositive -->
-                    <img src="../public/img/scene/04.jpg"
-                        alt="Image 4">
-                </div>
-                <!-- Cinquième diapositive -->
-                <div class="slide">
-                    <!-- Image de la cinquième diapositive -->
-                    <img src="../public/img/scene/05.jpg"
-                        alt="Image 5">
-                </div>
+                <div class="carousel-dots"></div>
             </div>
-            <!-- Conteneur pour les boutons de navigation -->
-            <div class="carousel-controls">
-                <!-- Bouton pour passer à la diapositive précédente -->
-                <button id="prev">Précédent</button>
-                <!-- Bouton pour passer à la diapositive suivante -->
-                <button id="next">Suivant</button>
-            </div>
-            <!-- Conteneur pour les points de navigation -->
-            <div class="carousel-dots"></div>
         </div>
-    </div>
-        </main>
-    </div>
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </main>
+</div>
+
+<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </body>
 </html>
