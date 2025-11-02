@@ -3,8 +3,9 @@ require "controller/CinemaController.php";
 require "controller/PersonController.php";
 require "controller/HomeController.php";
 require "model/connect.php";
+require "controller/AdminController.php";
 
-
+use Controller\AdminController;
 use Controller\CinemaController;
 use Controller\PersonController;
 use Controller\HomeController;
@@ -16,6 +17,7 @@ spl_autoload_register(function ($class_name){
 $ctrlCinema = new CinemaController();
 $ctrlPerson = new PersonController();
 $ctrlHome = new HomeController();
+$ctrlAdmin = new AdminController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 // $type =(isset($_get["type"])) ? $-get["type"] : null;
@@ -50,6 +52,18 @@ if (isset($_GET["action"])) {
             case "Connexion":
            // $ctrlCinema->ListTypeFilms();
             break;
+
+           case "ajouterGenre":
+    $ctrlAdmin->AjouterGenre();
+    break;
+
+case "AddFilms":
+    $ctrlAdmin->AddFilms();
+    break;
+
+    case "AddPerson":
+    $ctrlAdmin->AddPerson();
+    break;
 
         default:
            $ctrlHome->PageHome();

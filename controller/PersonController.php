@@ -35,11 +35,14 @@ class PersonController {
 
         $pdo= Connect:: seConnecter();
         $requete = $pdo->query("
-     SELECT DISTINCT
+   SELECT DISTINCT
             person.first_name,
-            person.last_name
+            person.last_name,
+            film.title,
+            id_film
         FROM director
         INNER JOIN person ON person.id_people = director.id_people
+		INNER JOIN film ON  film.id_film = director.id_director
         ");
      
 //crée la "vue" ListDirectors.php afin de rendre le site dynamique
@@ -78,6 +81,9 @@ WHERE
         require "view/DetailActors.php";
         
     }
+
+ 
+
 
 }
 

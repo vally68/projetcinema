@@ -16,6 +16,7 @@
                 <tr>
                     <td><?= $director["first_name"] ?></td>
                     <td><?= $director["last_name"] ?></td>
+                    <td><a href="index.php?action=DetailFilms&id=<?= $director['id_film'] ?>"><?= $director["title"] ?></td></a>
                 </tr>
             <?php } ?>
     </tbody>

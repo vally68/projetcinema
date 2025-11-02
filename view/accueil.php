@@ -36,6 +36,7 @@ $titre_secondaire = "Page d'accueil";
             <li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
             <li><a href="../index.php?action=ListActors">ACTEUR</a></li>
             <li><a href="../index.php?action=ListFilms">FILM</a></li>
+           
             <li>
                 <!-- Select genres -->
                 <select class="form-select" id="id_type_film" name="id_type_film" onchange="if(this.value) window.location.href=this.value;">

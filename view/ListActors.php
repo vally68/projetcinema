@@ -28,7 +28,46 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<h2>Ajouter une nouvelle personne</h2>
 
+<form action="index.php?action=AddPerson" method="post" class="mt-3" style="max-width:500px;">
+    <div class="mb-3">
+        <label class="form-label">Prénom</label>
+        <input type="text" name="first_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" name="last_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" name="birthday" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Genre</label>
+        <select name="gender" class="form-select" required>
+            <option value="">-- Sélectionner --</option>
+            <option value="M">Homme</option>
+            <option value="F">Femme</option>
+            <option value="Autre">Autre</option>
+        </select>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="is_actor" id="is_actor">
+        <label for="is_actor" class="form-check-label">Acteur</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="is_director" id="is_director">
+        <label for="is_director" class="form-check-label">Réalisateur</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
 <?php
 $titre = "Liste des acteurs";
 $titre_secondaire = "Nom et prénom";
