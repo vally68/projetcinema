@@ -16,10 +16,10 @@
             <tr>
                 <td>
                     <a href="index.php?action=DetailFilms&id=<?= $film['id_film'] ?>">
-                        <?= htmlspecialchars($film["title"]) ?>
+                        <?= ($film["title"]) ?>
                     </a>
                 </td>
-                <td><?= htmlspecialchars($film["release_year_france"]) ?></td>
+                <td><?= ($film ["release_year_france"]) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

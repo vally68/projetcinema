@@ -5,7 +5,38 @@ use Model\Connect;
 
 class PersonController {
 
-    
+    public function listActorsAndDirectors()  {
+        /**
+     * Lister les acteurs
+     */
+
+        $pdo= Connect:: seConnecter();
+        $requeteActor = $pdo->query("
+        SELECT 
+            person.first_name,
+            person.last_name,
+            person.id_people
+        
+        FROM actor
+        INNER JOIN person ON person.id_people = actor.id_people
+        ");
+
+        $pdo= Connect:: seConnecter();
+     $requeteDirector = $pdo->query("
+        SELECT DISTINCT
+            person.first_name,
+            person.last_name,
+            person.id_people
+        FROM director
+        INNER JOIN person ON person.id_people = director.id_people
+        ");
+
+
+        require "view/ListPerson.php";
+
+
+        
+    }
 
      public function ListActors()  {
         /**
@@ -13,7 +44,7 @@ class PersonController {
      */
 
         $pdo= Connect:: seConnecter();
-        $requete = $pdo->query("
+        $requeteActor = $pdo->query("
         SELECT 
             person.first_name,
             person.last_name,
@@ -34,15 +65,12 @@ class PersonController {
      */
 
         $pdo= Connect:: seConnecter();
-        $requete = $pdo->query("
-   SELECT DISTINCT
+        $requeteDirector = $pdo->query("
+SELECT DISTINCT
             person.first_name,
-            person.last_name,
-            film.title,
-            id_film
+            person.last_name
         FROM director
         INNER JOIN person ON person.id_people = director.id_people
-		INNER JOIN film ON  film.id_film = director.id_director
         ");
      
 //crée la "vue" ListDirectors.php afin de rendre le site dynamique
@@ -57,7 +85,7 @@ class PersonController {
         $pdo= Connect:: seConnecter();
         $requete = $pdo->prepare("
 SELECT
-        film.id_film,
+  film.id_film,
   film.title AS film,
   CONCAT(person.first_name, ' ', person.last_name) AS acteurs,
   film.release_year_france AS année_de_sortie,
@@ -73,7 +101,7 @@ INNER JOIN
 INNER JOIN
   person ON actor.id_people = person.id_people
 WHERE
-  play.id_actor = :id;
+  person.id_people = :id
         ");
          $requete->execute(["id" => $id]);
      
@@ -82,8 +110,28 @@ WHERE
         
     }
 
- 
+     public function DetailDirectors($id)  {
 
+
+        $pdo= Connect:: seConnecter();
+        $requete = $pdo->prepare("
+SELECT 
+    film.id_film,
+    film.title AS film_real,
+    person.gender AS Genre,
+    CONCAT(person.first_name, ' ', person.last_name) AS Nom_prénom
+FROM Film 
+INNER JOIN director  ON film.id_film = director.id_director
+INNER JOIN person ON director.id_people = person.id_people
+WHERE director.id_people= :id
+ORDER BY film.release_year_france
+        ");
+         $requete->execute(["id" => $id]);
+     
+
+        require "view/DetailDirectors.php";
+        
+    }
 
 }
 

@@ -13,9 +13,9 @@
     <tbody>
         <?php foreach ($requeteGF->fetchAll() as $listgenre): ?>
             <tr>
-                <td><?= htmlspecialchars($listgenre["genre"]) ?></td>
-                <td><?= htmlspecialchars($listgenre["nombre_film_par_genre"]) ?></td>
-                <td><?= htmlspecialchars($listgenre["titres"] ?? "—") ?></td>
+                <td><?= ($listgenre["genre"]) ?></td>
+                <td><?= ($listgenre["nombre_film_par_genre"]) ?></td>
+                <td><?= ($listgenre["titres"] ?? "—") ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -52,7 +52,7 @@ $contenu = ob_get_clean();
     <div id="wrapper" class="container mt-4">
         <main>
             <h1 class="mb-4">Projet Cinéma</h1>
-            <h2><?= htmlspecialchars($titre_secondaire) ?></h2>
+            <h2><?= ($titre_secondaire) ?></h2>
             <?= $contenu ?>
         </main>
     </div>

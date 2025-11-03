@@ -53,16 +53,24 @@ if (isset($_GET["action"])) {
            // $ctrlCinema->ListTypeFilms();
             break;
 
+            case "ListPerson":
+             $ctrlPerson->listActorsAndDirectors();
+            break;
+
+            case "DetailDirectors":
+            $ctrlPerson->DetailDirectors($id);
+            break;
+
            case "ajouterGenre":
-    $ctrlAdmin->AjouterGenre();
+    $ctrlAdmin->ajouterGenre();
     break;
 
 case "AddFilms":
-    $ctrlAdmin->AddFilms();
+    $ctrlAdmin->addFilms();
     break;
 
     case "AddPerson":
-    $ctrlAdmin->AddPerson();
+    $ctrlAdmin->addPerson();
     break;
 
         default:

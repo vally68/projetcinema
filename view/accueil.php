@@ -43,7 +43,7 @@ $titre_secondaire = "Page d'accueil";
                     <option value="">-- Sélectionner un genre de film --</option>
                     <?php foreach ($allGenres as $genre): ?>
                         <option value="../index.php?action=ListTypeFilms&id=<?= $genre['id_type_film'] ?>">
-                            <?= htmlspecialchars($genre['labelled']) ?>
+                            <?= ($genre['labelled']) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

@@ -1,7 +1,7 @@
 <!-- création de l'objet php -->
 <?php ob_start(); ?>
 
-<p class ="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> réalisateurs </p>
+<p class ="uk-label uk-label-warning"> Il y a <?= $requeteDirector->rowCount() ?> réalisateurs </p>
 
 <table class="uk-table uk-table-stripped">
     <thead>
@@ -12,11 +12,11 @@
     </thead>
     <tbody>
         <?php
-            foreach($requete->fetchAll() as $director) { ?>
+            foreach($requeteDirector->fetchAll() as $director) { ?>
                 <tr>
                     <td><?= $director["first_name"] ?></td>
                     <td><?= $director["last_name"] ?></td>
-                    <td><a href="index.php?action=DetailFilms&id=<?= $director['id_film'] ?>"><?= $director["title"] ?></td></a>
+                    <!-- <td><a href="index.php?action=DetailFilms&id=<?= $director['id_film'] ?>"><?= $director["title"] ?></td></a> -->
                 </tr>
             <?php } ?>
     </tbody>
@@ -25,7 +25,7 @@
 <?php
 
 $titre = "liste des réalisateurs";
-$titre_secondaire = "Nom et prénom";
+$titre_secondaire = "Réalisateurs et réalisatrice";
 $contenu = ob_get_clean();
 
 ?>
@@ -51,6 +51,51 @@ $contenu = ob_get_clean();
                 <h2 class ="uk-heading-bullet"><?= $titre_secondaire ?></h2>
                 <?= $contenu ?>
             </div>
+            <h2>Ajouter une nouvelle personne</h2>
+
+<form action="index.php?action=AddPerson" method="post" class="mt-3" style="max-width:500px;">
+    <div class="mb-3">
+        <label class="form-label">Prénom</label>
+        <input type="text" name="first_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" name="last_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" name="birthday" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Genre</label>
+        <select name="gender" class="form-select" required>
+            <option value="">-- Sélectionner --</option>
+            <option value="M">Homme</option>
+            <option value="F">Femme</option>
+            <option value="Autre">Autre</option>
+        </select>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="is_actor" id="is_actor">
+        <label for="is_actor" class="form-check-label">Acteur</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="is_director" id="is_director">
+        <label for="is_director" class="form-check-label">Réalisateur</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+<?php
+$titre = "Liste des acteurs";
+$titre_secondaire = "Nom et prénom";
+
+?>
         </main>
     </div>
 </body>

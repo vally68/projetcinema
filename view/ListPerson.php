@@ -1,10 +1,8 @@
 <?php ob_start(); ?>
 
-<p class="uk-label uk-label-warning">
-    Il y a <?= $requeteActor->rowCount() ?> acteurs.
-   
-</p>
 
+<!-- TABLE ACTEURS -->
+<h3>Liste des acteurs</h3>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -25,6 +23,31 @@
                         <?= ($actor["last_name"]) ?>
                     </a>
                 </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<!-- TABLE REALISATEURS -->
+<h3>Liste des réalisateurs</h3>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($requeteDirector->fetchAll() as $director) : ?>
+            <tr>
+                <td>
+                     <a href="index.php?action=DetailDirectors&id=<?= $director['id_people'] ?>" class="text-decoration-none text-dark">
+                <?= ($director["first_name"]) ?></a></td>
+        </a>
+                <td>
+                <a href="index.php?action=DetailDirectors&id=<?= $director['id_people'] ?>" class="text-decoration-none text-dark">
+                <?= ($director["last_name"]) ?></a></td>
+
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -70,11 +93,11 @@
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
 <?php
-$titre = "Liste des acteurs";
-$titre_secondaire = "Nom et prénom";
+$titre = "Liste des réalisateurs et acteurs";
+$titre_secondaire = "Réalisateurs et acteurs";
 $contenu = ob_get_clean();
-?>
 
+?>
 <!doctype html>
 <html lang="fr">
 <head>
