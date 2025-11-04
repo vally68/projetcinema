@@ -20,6 +20,13 @@
                     </a>
                 </td>
                 <td><?= ($film ["release_year_france"]) ?></td>
+                 <td>
+                    <form action="index.php?action=DeleteFilm" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce film ?');" style="display:inline;">
+                        <input type="hidden" name="id_film" value="<?= $film['id_film'] ?? '' ?>">
+
+                        <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

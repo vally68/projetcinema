@@ -218,7 +218,35 @@ class AdminController {
 }
 
 //creer fonction effacer
+public function deletefilm()
+{
+    $pdo = Connect::seConnecter();
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_film'])) {
+        $id_film = (int) $_POST['id_film'];
+
+        try {
+            // Optionnel : transaction pour sécurité
+            $pdo->beginTransaction();
+
+            // Supprimer le type de film
+            $stmt = $pdo->prepare("DELETE FROM film WHERE id_film = :id");
+            $stmt->execute(['id' => $id_film]);
+
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            die("Erreur suppression : " . $e->getMessage()); // voir les message d'erreurs au lieu de repasser sur accueil
+        }
+
+        header("Location: index.php?action=ListFilms"); //redirection apres suppression
+        exit;
+    }
+
+
+}
 
 }
 

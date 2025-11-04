@@ -2,14 +2,14 @@
 
 <p class="uk-label uk-label-warning">
     Il y a <?= $requeteActor->rowCount() ?> acteurs.
-   
 </p>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover align-middle">
     <thead>
         <tr>
             <th>Prénom</th>
             <th>Nom</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -17,18 +17,26 @@
             <tr>
                 <td>
                     <a href="index.php?action=DetailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
-                        <?= ($actor["first_name"]) ?>
+                         <?= htmlspecialchars($actor["first_name"]) ?> <!-- j'ai laissé le déprécié html... pour gagner du temps à l'affichage  afin de finir les suppressions, je ferai les correctifs sécu plus tard -->
                     </a>
                 </td>
                 <td>
                     <a href="index.php?action=DetailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
-                        <?= ($actor["last_name"]) ?>
+                        <?= htmlspecialchars($actor["last_name"]) ?>
                     </a>
+                </td>
+                <td>
+                    <!-- Formulaire POST pour suppression (meilleure pratique que GET) -->
+                    <form action="index.php?action=DeleteActor" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet acteur (rôle acteur) ?');" style="display:inline;">
+                        <input type="hidden" name="id_people" value="<?= $actor['id_people'] ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
+                    </form>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
 <h2>Ajouter une nouvelle personne</h2>
 
 <form action="index.php?action=AddPerson" method="post" class="mt-3" style="max-width:500px;">
@@ -69,6 +77,7 @@
 
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
+
 <?php
 $titre = "Liste des acteurs";
 $titre_secondaire = "Nom et prénom";

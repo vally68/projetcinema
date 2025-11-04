@@ -16,6 +16,13 @@
                 <tr>
                     <td><?= $director["first_name"] ?></td>
                     <td><?= $director["last_name"] ?></td>
+                     <td>
+                    <!-- Formulaire POST pour suppression (meilleure pratique que GET) -->
+                    <form action="index.php?action=DeleteDirector" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce réalisateur ?');" style="display:inline;">
+                        <input type="hidden" name="id_people" value="<?= $director['id_people'] ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
+                    </form>
+                </td>
                     <!-- <td><a href="index.php?action=DetailFilms&id=<?= $director['id_film'] ?>"><?= $director["title"] ?></td></a> -->
                 </tr>
             <?php } ?>

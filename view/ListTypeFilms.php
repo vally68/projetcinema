@@ -14,8 +14,15 @@
         <?php foreach ($requeteGF->fetchAll() as $listgenre): ?>
             <tr>
                 <td><?= ($listgenre["genre"]) ?></td>
-                
+               
                 <td><?= ($listgenre["titres"] ?? "—") ?></td>
+                <td>
+                    <form action="index.php?action=deletetypefilm" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce genre ?');" style="display:inline;">
+                        <input type="hidden" name="id_type_film" value="<?= $listgenre['id_type_film'] ?? '' ?>">
+
+                        <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

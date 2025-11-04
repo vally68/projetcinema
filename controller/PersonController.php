@@ -69,7 +69,8 @@ class PersonController {
         $requeteDirector = $pdo->query("
 SELECT DISTINCT
             person.first_name,
-            person.last_name
+            person.last_name,
+            person.id_people
         FROM director
         INNER JOIN person ON person.id_people = director.id_people
         ");
@@ -136,6 +137,101 @@ INNER JOIN person
         require "view/DetailDirectors.php";
         
     }
+
+public function deleteActor()
+{
+    $pdo = Connect::seConnecter();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_people'])) {
+        $id_people = (int) $_POST['id_people'];
+
+        try {
+            // Optionnel : transaction pour sécurité
+            $pdo->beginTransaction();
+
+            // Supprimer le rôle acteur et uniquement acteur
+            $stmt = $pdo->prepare("DELETE FROM actor WHERE id_people = :id");
+            $stmt->execute(['id' => $id_people]);
+
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            //insérer fonction récup erreur
+        }
+
+        header("Location: index.php?action=ListActors");
+        exit;
+    }
+
+    
+    header("Location: index.php?action=ListActors");
+    exit;
+}
+
+public function deleteDirector()
+{
+    $pdo = Connect::seConnecter();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_people'])) {
+        $id_people = (int) $_POST['id_people'];
+
+        try {
+            // Optionnel : transaction pour sécurité
+            $pdo->beginTransaction();
+
+            // Supprimer le rôle acteur et uniquement acteur
+            $stmt = $pdo->prepare("DELETE FROM director WHERE id_people = :id");
+            $stmt->execute(['id' => $id_people]);
+
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            //insérer fonction récup erreur
+        }
+
+        header("Location: index.php?action=ListDirectors");
+        exit;
+    }
+
+    
+    header("Location: index.php?action=ListDirectors");
+    exit;
+}
+
+public function deleteTypeFIlm()
+{
+    $pdo = Connect::seConnecter();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_type_film'])) {
+        $id_people = (int) $_POST['id_type_film'];
+
+        try {
+            // Optionnel : transaction pour sécurité
+            $pdo->beginTransaction();
+
+            // Supprimer le rôle acteur et uniquement acteur
+            $stmt = $pdo->prepare("DELETE FROM film_type WHERE id_type_film= :id");
+            $stmt->execute(['id' => $id_people]);
+
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+             die("Erreur suppression : " . $e->getMessage());
+        }
+
+        header("Location: index.php?action=ListDirectors");
+        exit;
+    }
+
+ 
+}
+
 
 }
 
