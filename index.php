@@ -58,7 +58,7 @@ if (isset($_GET["action"])) {
             break;
 
             case "DetailDirectors":
-            $ctrlPerson->DetailDirectors($id);
+            $ctrlPerson->detailDirectors($id);
             break;
 
            case "ajouterGenre":

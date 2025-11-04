@@ -19,6 +19,7 @@ class PersonController {
         
         FROM actor
         INNER JOIN person ON person.id_people = actor.id_people
+        
         ");
 
         $pdo= Connect:: seConnecter();
@@ -110,23 +111,26 @@ WHERE
         
     }
 
-     public function DetailDirectors($id)  {
+     public function detailDirectors($id)  {
 
 
         $pdo= Connect:: seConnecter();
-        $requete = $pdo->prepare("
-SELECT 
-    film.id_film,
+        $requete5 = $pdo->prepare("
+ SELECT 
+    film.id_film, 
     film.title AS film_real,
-    person.gender AS Genre,
-    CONCAT(person.first_name, ' ', person.last_name) AS Nom_prénom
-FROM Film 
-INNER JOIN director  ON film.id_film = director.id_director
-INNER JOIN person ON director.id_people = person.id_people
-WHERE director.id_people= :id
-ORDER BY film.release_year_france
+    film.id_director,
+     person.gender AS Genre,
+CONCAT(person.first_name, ' ', person.last_name) AS Nom_prénom 
+FROM film
+INNER JOIN director 
+    ON film.id_director = director.id_director
+INNER JOIN person 
+    ON director.id_people = person.id_people
+   WHERE
+  person.id_people = :id
         ");
-         $requete->execute(["id" => $id]);
+         $requete5->execute(["id" => $id]);
      
 
         require "view/DetailDirectors.php";

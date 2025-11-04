@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th>Genre</th>
-            <th>Nombre de films associés</th>
+            
             <th>Liste des films associés</th>
         </tr>
     </thead>
@@ -14,7 +14,7 @@
         <?php foreach ($requeteGF->fetchAll() as $listgenre): ?>
             <tr>
                 <td><?= ($listgenre["genre"]) ?></td>
-                <td><?= ($listgenre["nombre_film_par_genre"]) ?></td>
+                
                 <td><?= ($listgenre["titres"] ?? "—") ?></td>
             </tr>
         <?php endforeach; ?>

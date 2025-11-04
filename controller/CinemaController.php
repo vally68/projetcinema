@@ -64,7 +64,7 @@ public function DetailFilms($id) {
 
  SELECT 
     film_type.labelled AS genre,
-    film.id_film AS nombre_film_par_genre,
+   
     film.title   AS titres
 FROM 
     film

@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($requete->fetchAll() as $deddirector): ?>
+        <?php foreach ($requete5->fetchAll() as $deddirector): ?>
             <tr>
                 
                 <td><?= ($deddirector["Nom_prénom"]) ?></td>
@@ -27,7 +27,7 @@
 </table>
 
 <?php
-$titre = "Filmographie de l’acteur";
+$titre = "Filmographie du réalisateur";
 $titre_secondaire = "Détail de la filmographie";
 $contenu = ob_get_clean();
 ?>
