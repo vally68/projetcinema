@@ -18,7 +18,7 @@
                     <td><?= $director["last_name"] ?></td>
                      <td>
                     <!-- Formulaire POST pour suppression (meilleure pratique que GET) -->
-                    <form action="index.php?action=DeleteDirector" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce réalisateur ?');" style="display:inline;">
+                    <form action="index.php?action=deleteDirector" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce réalisateur ?');" style="display:inline;">
                         <input type="hidden" name="id_people" value="<?= $director['id_people'] ?>">
                         <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
                     </form>
@@ -60,7 +60,7 @@ $contenu = ob_get_clean();
             </div>
             <h2>Ajouter une nouvelle personne</h2>
 
-<form action="index.php?action=AddPerson" method="post" class="mt-3" style="max-width:500px;">
+<form action="index.php?action=addPerson" method="post" class="mt-3" style="max-width:500px;">
     <div class="mb-3">
         <label class="form-label">Prénom</label>
         <input type="text" name="first_name" class="form-control" required>

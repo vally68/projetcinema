@@ -16,18 +16,18 @@
         <?php foreach ($requeteActor->fetchAll() as $actor): ?>
             <tr>
                 <td>
-                    <a href="index.php?action=DetailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
+                    <a href="index.php?action=detailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
                          <?= htmlspecialchars($actor["first_name"]) ?> <!-- j'ai laissé le déprécié html... pour gagner du temps à l'affichage  afin de finir les suppressions, je ferai les correctifs sécu plus tard -->
                     </a>
                 </td>
                 <td>
-                    <a href="index.php?action=DetailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
+                    <a href="index.php?action=detailActors&id=<?= $actor['id_people'] ?>" class="text-decoration-none text-dark">
                         <?= htmlspecialchars($actor["last_name"]) ?>
                     </a>
                 </td>
                 <td>
                     <!-- Formulaire POST pour suppression (meilleure pratique que GET) -->
-                    <form action="index.php?action=DeleteActor" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet acteur (rôle acteur) ?');" style="display:inline;">
+                    <form action="index.php?action=deleteActor" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet acteur (rôle acteur) ?');" style="display:inline;">
                         <input type="hidden" name="id_people" value="<?= $actor['id_people'] ?>">
                         <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>
                     </form>
@@ -39,7 +39,7 @@
 
 <h2>Ajouter une nouvelle personne</h2>
 
-<form action="index.php?action=AddPerson" method="post" class="mt-3" style="max-width:500px;">
+<form action="index.php?action=addPerson" method="post" class="mt-3" style="max-width:500px;">
     <div class="mb-3">
         <label class="form-label">Prénom</label>
         <input type="text" name="first_name" class="form-control" required>

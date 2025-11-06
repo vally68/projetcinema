@@ -33,15 +33,15 @@ $titre_secondaire = "CINEMA WEBSITE";
 
         <nav class="main-nav">
             <ul>
-                <li><a href="../index.php?action=ListFilms">FILM</a></li>
-                <li><a href="../index.php?action=ListDirectors">RÉALISATEUR</a></li>
-                <li><a href="../index.php?action=ListActors">ACTEUR</a></li>
+                <li><a href="../index.php?action=listFilms">FILM</a></li>
+                <li><a href="../index.php?action=listDirectors">RÉALISATEUR</a></li>
+                <li><a href="../index.php?action=listActors">ACTEUR</a></li>
                 <li>
                 <!-- Select genres -->
                 <select class="form-select" id="id_type_film" name="id_type_film" onchange="if(this.value) window.location.href=this.value;">
                     <option value="">-- Sélectionner un genre de film --</option>
                     <?php foreach ($allGenres as $genre): ?>
-                        <option value="../index.php?action=ListTypeFilms&id=<?= $genre['id_type_film'] ?>">
+                        <option value="../index.php?action=listTypeFilms&id=<?= $genre['id_type_film'] ?>">
                             <?= ($genre['labelled']) ?>
                         </option>
                     <?php endforeach; ?>
@@ -93,9 +93,9 @@ $titre_secondaire = "CINEMA WEBSITE";
     <div class="camera-block">
         <img src="../public/img/scene/camera.png" alt="Caméra" class="camera-img">
         <div class="camera-buttons">
-            <a href="../index.php?action=ListDirectors">RÉALISATEUR</a>
-            <a href="../index.php?action=ListActors">ACTEUR</a>
-            <a href="../index.php?action=ListFilms">FILM</a>
+            <a href="../index.php?action=listDirectors">RÉALISATEUR</a>
+            <a href="../index.php?action=listActors">ACTEUR</a>
+            <a href="../index.php?action=listFilms">FILM</a>
         </div>
     </div>
 </section>

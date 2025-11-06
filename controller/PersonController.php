@@ -33,13 +33,13 @@ class PersonController {
         ");
 
 
-        require "view/ListPerson.php";
+        require "view/listPerson.php";
 
 
         
     }
 
-     public function ListActors()  {
+     public function listActors()  {
         /**
      * Lister les acteurs
      */
@@ -56,11 +56,11 @@ class PersonController {
         ");
      
 
-        require "view/ListActors.php";
+        require "view/listActors.php";
         
     }
 
-         public function ListDirectors()  {
+         public function listDirectors()  {
             /**
      * Lister les réalisateurs
      */
@@ -76,12 +76,12 @@ SELECT DISTINCT
         ");
      
 //crée la "vue" ListDirectors.php afin de rendre le site dynamique
-        require "view/ListDirectors.php";
+        require "view/listDirectors.php";
         
     }
     
 
-         public function DetailActors($id)  {
+         public function detailActors($id)  {
 
 
         $pdo= Connect:: seConnecter();
@@ -108,7 +108,7 @@ WHERE
          $requete->execute(["id" => $id]);
      
 
-        require "view/DetailActors.php";
+        require "view/detailActors.php";
         
     }
 
@@ -134,7 +134,7 @@ INNER JOIN person
          $requete5->execute(["id" => $id]);
      
 
-        require "view/DetailDirectors.php";
+        require "view/detailDirectors.php";
         
     }
 
@@ -161,12 +161,12 @@ public function deleteActor()
             //insérer fonction récup erreur
         }
 
-        header("Location: index.php?action=ListActors");
+        header("Location: index.php?action=listActors");
         exit;
     }
 
     
-    header("Location: index.php?action=ListActors");
+    header("Location: index.php?action=listActors");
     exit;
 }
 
@@ -193,12 +193,12 @@ public function deleteDirector()
             //insérer fonction récup erreur
         }
 
-        header("Location: index.php?action=ListDirectors");
+        header("Location: index.php?action=listDirectors");
         exit;
     }
 
     
-    header("Location: index.php?action=ListDirectors");
+    header("Location: index.php?action=listDirectors");
     exit;
 }
 
@@ -225,7 +225,7 @@ public function deleteTypeFIlm()
              die("Erreur suppression : " . $e->getMessage());
         }
 
-        header("Location: index.php?action=ListDirectors");
+        header("Location: index.php?action=listDirectors");
         exit;
     }
 

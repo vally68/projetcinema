@@ -16,7 +16,7 @@
                 
                 <td><?= ($deddirector["Genre"]) ?></td>
                 <td>
-                    <a href="index.php?action=DetailFilms&id=<?= $deddirector['id_film'] ?>" 
+                    <a href="index.php?action=detailFilms&id=<?= $deddirector['id_film'] ?>" 
                        class="text-decoration-none text-dark">
                         <?= ($deddirector["film_real"]) ?>
                     </a>

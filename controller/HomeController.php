@@ -6,7 +6,7 @@ use Model\Connect;
 class HomeController {
 
     
- public function PageHome()  {
+ public function pageHome()  {
 
   header("location:view/Accueil.php");
       

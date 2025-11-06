@@ -27,42 +27,42 @@ $id = isset($_GET["id"]) ? $_GET["id"] : null;
 if (isset($_GET["action"])) {
     switch ($_GET["action"]) {
         // FILMS
-        case "ListFilms":
-            $ctrlCinema->ListFilms();
+        case "listFilms":
+            $ctrlCinema->listFilms();
             break;
 
-        case "DetailFilms":
-            $ctrlCinema->DetailFilms($id);
+        case "detailFilms":
+            $ctrlCinema->detailFilms($id);
             break;
 
         // ACTEURS
-        case "DetailActors":
-            $ctrlPerson->DetailActors($id);
+        case "detailActors":
+            $ctrlPerson->detailActors($id);
             break;
 
-        case "ListActors":
-            $ctrlPerson->ListActors();
+        case "listActors":
+            $ctrlPerson->listActors();
             break;
 
         // RÉALISATEURS
-        case "ListDirectors":
-            $ctrlPerson->ListDirectors();
+        case "listDirectors":
+            $ctrlPerson->listDirectors();
             break;
 
-        case "DetailDirectors":
+        case "detailDirectors":
             $ctrlPerson->detailDirectors($id);
             break;
 
         // GENRES
-        case "ListTypesFilms":
-            $ctrlCinema->ListTypesFilms(); // Liste de tous les genres
+        case "listTypesFilms":
+            $ctrlCinema->listTypesFilms(); // Liste de tous les genres
             break;
 
-        case "ListTypeFilms":
+        case "listTypeFilms":
             if ($id) {
                 $ctrlCinema->ListTypeFilms($id); // Films d’un genre spécifique
             } else {
-                header("Location: index.php?action=ListTypesFilms");
+                header("Location: index.php?action=listTypesFilms");
                 exit;
             }
             break;
@@ -72,21 +72,21 @@ if (isset($_GET["action"])) {
             break;
 
         // AJOUTS
-        case "AddFilms":
+        case "addFilms":
             $ctrlAdmin->addFilms();
             break;
 
-        case "AddPerson":
+        case "addPerson":
             $ctrlAdmin->addPerson();
             break;
 
         // SUPPRESSIONS
-        case "DeleteActor":
+        case "deleteActor":
             $ctrl = new PersonController();
             $ctrl->deleteActor();
             break;
 
-        case "DeleteDirector":
+        case "deleteDirector":
             $ctrl = new PersonController();
             $ctrl->deleteDirector();
             break;
@@ -96,13 +96,13 @@ if (isset($_GET["action"])) {
             $ctrl->deletetypefilm();
             break;
 
-            case "DeleteFilm":
+            case "deleteFilm":
             $ctrl = new AdminController();
             $ctrl->deletefilm();
             break;
 
         // PAR DÉFAUT
-        case "ListPerson":
+        case "listPerson":
             $ctrlPerson->listActorsAndDirectors();
             break;
 
@@ -111,11 +111,11 @@ if (isset($_GET["action"])) {
             break;
 
         default:
-            $ctrlHome->PageHome();
+            $ctrlHome->pageHome();
             break;
     }
 } else {
     // Si aucune action n’est définie ou erreur dans le titre,retour  page d’accueil
-    $ctrlHome->PageHome();
+    $ctrlHome->pageHome();
 }
 ?>

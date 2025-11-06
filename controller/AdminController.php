@@ -67,7 +67,7 @@ class AdminController {
                     $requete->execute();
 
                     // Redirection vers la liste des genres après ajout
-                    header("Location: index.php?action=ListFilms");
+                    header("Location: index.php?action=listFilms");
                     exit;
                 } else {
                     // Message si le genfilm re existe déjà
@@ -131,7 +131,7 @@ class AdminController {
                 $pdo->commit();
 
                 // Redirection vers une page de confirmation ou de liste
-                header("Location: index.php?action=ListPerson");
+                header("Location: index.php?action=listPerson");
                 exit;
 
             } catch (\PDOException $e) {
@@ -144,7 +144,7 @@ class AdminController {
     }
 
     // Afficher le formulaire d’ajout
-    require "view/Person.php";
+    require "view/person.php";
 }
 
 
@@ -201,7 +201,7 @@ class AdminController {
                 $pdo->commit();
 
                 // Redirection vers liste personnes
-                 header("Location: index.php?action=ListActors");
+                 header("Location: index.php?action=listActors");
                 exit;
 
             } catch (\PDOException $e) {
@@ -214,7 +214,7 @@ class AdminController {
     }
 
     // Afficher le formulaire d’ajout
-    require "view/Person.php";
+    require "view/person.php";
 }
 
 //creer fonction effacer
@@ -241,7 +241,7 @@ public function deletefilm()
             die("Erreur suppression : " . $e->getMessage()); // voir les message d'erreurs au lieu de repasser sur accueil
         }
 
-        header("Location: index.php?action=ListFilms"); //redirection apres suppression
+        header("Location: index.php?action=listFilms"); //redirection apres suppression
         exit;
     }
 

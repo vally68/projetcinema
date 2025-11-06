@@ -15,13 +15,13 @@
         <?php foreach ($requete->fetchAll() as $film): ?>
             <tr>
                 <td>
-                    <a href="index.php?action=DetailFilms&id=<?= $film['id_film'] ?>">
+                    <a href="index.php?action=detailFilms&id=<?= $film['id_film'] ?>">
                         <?= ($film["title"]) ?>
                     </a>
                 </td>
                 <td><?= ($film ["release_year_france"]) ?></td>
                  <td>
-                    <form action="index.php?action=DeleteFilm" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce film ?');" style="display:inline;">
+                    <form action="index.php?action=deleteFilm" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce film ?');" style="display:inline;">
                         <input type="hidden" name="id_film" value="<?= $film['id_film'] ?? '' ?>">
 
                         <button type="submit" class="btn btn-danger btn-sm">🗑 Supprimer</button>

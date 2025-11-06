@@ -5,13 +5,13 @@ use Model\Connect;
 
 class CinemaController {
 
-    public function ListFilms() {
+    public function listFilms() {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("SELECT id_film, title, release_year_france FROM film");
-        require "view/ListFilms.php";
+        require "view/listFilms.php";
     }
 
-    public function DetailFilms($id) {
+    public function detailFilms($id) {
         $pdo = Connect::seConnecter();
 
         $requete = $pdo->prepare("SELECT * FROM film WHERE id_film = :id");
@@ -32,11 +32,11 @@ class CinemaController {
         $requete->execute(["id" => $id]);
         $requetecasting->execute(["id" => $id]);
 
-        require "view/DetailFilms.php";
+        require "view/detailFilms.php";
     }
 
     // Liste de tous les genres avec films associés
-    public function ListTypesFilms() {
+    public function listTypesFilms() {
         $pdo = Connect::seConnecter();
         $requeteGF = $pdo->query("
             SELECT 
@@ -50,11 +50,11 @@ class CinemaController {
             ORDER BY film_type.labelled ASC
         ");
 
-        require "view/ListTypeFilms.php";
+        require "view/listTypeFilms.php";
     }
 
     // Liste des films pour un genre spécifique
-    public function ListTypeFilms($id) {
+    public function listTypeFilms($id) {
         $pdo = Connect::seConnecter();
         $requeteGF = $pdo->prepare("
             SELECT 
@@ -71,7 +71,7 @@ class CinemaController {
 
         $requeteGF->execute(["id" => $id]);
 
-        require "view/ListTypeFilms.php";
+        require "view/listTypeFilms.php";
     }
 
 
@@ -108,7 +108,7 @@ public function deletetypefilm()
             $pdo->commit();
 
             // redirection si OK
-            header("Location: index.php?action=ListTypeFilms");
+            header("Location: index.php?action=listTypeFilms");
             exit;
         } catch (\Throwable $e) {
             if ($pdo->inTransaction()) {
@@ -120,7 +120,7 @@ public function deletetypefilm()
     }
 
     // Si pas de POST ou champ manquant, renvoyer vers la liste
-    header("Location: index.php?action=ListTypeFilms");
+    header("Location: index.php?action=listTypeFilms");
     exit;
 }
 
