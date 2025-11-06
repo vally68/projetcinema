@@ -79,33 +79,52 @@ public function deletetypefilm()
 {
     $pdo = Connect::seConnecter();
 
+    // S'assurer que PDO lance des exceptions (utile pour debug)
+    $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_type_film'])) {
-        $id_people = (int) $_POST['id_type_film'];
+        $id_type_film = (int) $_POST['id_type_film'];
 
         try {
-            // Optionnel : transaction pour sécurité
             $pdo->beginTransaction();
 
-            // Supprimer le type de film
-            $stmt = $pdo->prepare("DELETE FROM film_type WHERE id_film_type = :id");
-            $stmt->execute(['id' => $id_people]);
+            // 1) Supprimer les relations dans la table 'belong' si elles existent
+            $stmtBelong = $pdo->prepare("DELETE FROM belong WHERE id_type_film = :id");
+            $stmtBelong->execute(['id' => $id_type_film]);
+            // facultatif : $deletedBelong = $stmtBelong->rowCount();
+
+            // 2) Supprimer le type de film
+            $stmtType = $pdo->prepare("DELETE FROM film_type WHERE id_type_film = :id");
+            $stmtType->execute(['id' => $id_type_film]);
+            $deleted = $stmtType->rowCount();
+
+            if ($deleted === 0) {
+                // pas de ligne supprimée → id introuvable
+                $pdo->rollBack();
+                // message d'erreur utile pour debug ; en production, logguer au lieu de die()
+                die("Aucun genre trouvé avec id = {$id_type_film} — suppression annulée.");
+            }
 
             $pdo->commit();
+
+            // redirection si OK
+            header("Location: index.php?action=ListTypeFilms");
+            exit;
         } catch (\Throwable $e) {
             if ($pdo->inTransaction()) {
                 $pdo->rollBack();
             }
-              die("Erreur suppression : " . $e->getMessage());
+            // Affiche l'erreur pour debug ; remplacer par un log en production
+            die("Erreur lors de la suppression : " . $e->getMessage());
         }
-
-        header("Location: index.php?action=ListTypeFilms");
-        exit;
     }
 
-    
+    // Si pas de POST ou champ manquant, renvoyer vers la liste
     header("Location: index.php?action=ListTypeFilms");
     exit;
 }
+
+
 
 
 

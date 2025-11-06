@@ -91,7 +91,7 @@ if (isset($_GET["action"])) {
             $ctrl->deleteDirector();
             break;
 
-            case "DeleteTypeFilm":
+            case "deletetypefilm":
             $ctrl = new CinemaController();
             $ctrl->deletetypefilm();
             break;

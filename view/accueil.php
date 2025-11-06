@@ -1,43 +1,42 @@
 <?php
-require_once "../model/connect.php"; // chemin relatif à adapter si nécessaire
+require_once "../model/connect.php";
 use Model\Connect;
 
-// Connexion à la base
 $pdo = Connect::seConnecter();
-
-// Récupérer tous les genres
 $stmt = $pdo->query("SELECT id_type_film, labelled FROM film_type");
 $allGenres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 $titre = "Accueil";
-$titre_secondaire = "Page d'accueil";
+$titre_secondaire = "CINEMA WEBSITE";
 ?>
-
 <!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><?= htmlspecialchars($titre) ?></title>
     <link rel="stylesheet" href="../public/css/style.css">
-    <title><?= $titre ?></title>
-    <script src="../public/js/app.js" async></script>
-</head>
+    </head>
 <body>
-<header>
-    <nav class="menu">
-        <ul>
-            <li>
-                <a href="#">
-                    <label for="site-search"></label>
-                    <input type="search" id="site-search" name="q" />
-                </a>
-            </li>
-            <li><a href="../index.php?action=ListDirectors">REALISATEUR</a></li>
-            <li><a href="../index.php?action=ListActors">ACTEUR</a></li>
-            <li><a href="../index.php?action=ListFilms">FILM</a></li>
-           
-            <li>
+
+<header class="site-header">
+    <div class="header-inner">
+        <form class="header-search" action="../index.php" method="get">
+            <input type="hidden" name="action" value="Search">
+            <button type="submit" title="Rechercher">🔍</button>
+            <input type="search" name="q" placeholder="Rechercher" aria-label="Rechercher">
+        </form>
+
+        <div class="brand">
+            <a href="../index.php"><img src="../public/img/scene/logo.png" alt="logo" class="logo-img"></a>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.php?action=ListFilms">FILM</a></li>
+                <li><a href="../index.php?action=ListDirectors">RÉALISATEUR</a></li>
+                <li><a href="../index.php?action=ListActors">ACTEUR</a></li>
+                <li>
                 <!-- Select genres -->
                 <select class="form-select" id="id_type_film" name="id_type_film" onchange="if(this.value) window.location.href=this.value;">
                     <option value="">-- Sélectionner un genre de film --</option>
@@ -48,42 +47,59 @@ $titre_secondaire = "Page d'accueil";
                     <?php endforeach; ?>
                 </select>
             </li>
-            <li><a href="../index.php?action=Connexion">Connexion</a></li>
-        </ul>
-    </nav>
+                </ul>
+        </nav>
+
+        <div class="nav-right">
+            <a href="../index.php?action=Connexion" class="btn-connexion">Connexion</a>
+        </div>
+    </div>
 </header>
 
-<div id="wrapper" class="uk-container uk-container-expand">
-    <main>
-        <h1><?= $titre_secondaire ?></h1>
+<section class="cinma">
+    <img src="../public/img/scene/cinema.png" alt="Salle de cinéma" class="cinma-bg">
+    <div class="cinma-overlay"></div>
+    <div class="cinma-content">
+        <h1><?= htmlspecialchars($titre_secondaire) ?></h1>
+        <form class="cinma-search" action="../index.php" method="get">
+            <input type="hidden" name="action" value="Search">
+            <input type="search" name="q" placeholder="Rechercher un film, un acteur..." aria-label="Rechercher">
+            </form>
+    </div>
 
-        <p>CINEMA WEBSITE</p>
-        <p>
-            <label for="site-search"></label>
-            <input type="search" id="site-search" name="q" />
-            <button>Search</button>
-        </p>
+</section>
 
-        <!-- Carrousel -->
-        <div class="container">
-            <div class="carousel">
-                <div class="carousel-inner">
-                    <div class="slide"><img src="../public/img/scene/01.jpg" alt="Image 1"></div>
-                    <div class="slide"><img src="../public/img/scene/02.png" alt="Image 2"></div>
-                    <div class="slide"><img src="../public/img/scene/03.jpg" alt="Image 3"></div>
-                    <div class="slide"><img src="../public/img/scene/04.jpg" alt="Image 4"></div>
-                    <div class="slide"><img src="../public/img/scene/05.jpg" alt="Image 5"></div>
-                </div>
-                <div class="carousel-controls">
-                    <button id="prev">Précédent</button>
-                    <button id="next">Suivant</button>
-                </div>
-                <div class="carousel-dots"></div>
-            </div>
+<section class="carousel-wrapper">
+    <div class="container carousel">
+        <div class="carousel-inner">
+            <div class="slide"><img src="../public/img/scene/01.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="../public/img/scene/02.png" alt="Image 2"></div>
+            <div class="slide"><img src="../public/img/scene/03.jpg" alt="Image 3"></div>
+            <div class="slide"><img src="../public/img/scene/04.jpg" alt="Image 4"></div>
+            <div class="slide"><img src="../public/img/scene/05.jpg" alt="Image 5"></div>
         </div>
-    </main>
-</div>
 
-<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <div class="carousel-controls">
+            <button id="prev" class="carousel-btn">Précédent</button>
+            <button id="next" class="carousel-btn">Suivant</button>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+</section>
+
+<section class="film-section">
+    <img src="../public/img/scene/fond.png" alt="Bande de film" class="film-strip"> <!-- image bobine -->
+    <div class="camera-block">
+        <img src="../public/img/scene/camera.png" alt="Caméra" class="camera-img">
+        <div class="camera-buttons">
+            <a href="../index.php?action=ListDirectors">RÉALISATEUR</a>
+            <a href="../index.php?action=ListActors">ACTEUR</a>
+            <a href="../index.php?action=ListFilms">FILM</a>
+        </div>
+    </div>
+</section>
+
+<script src="../public/js/app.js" defer></script>
 </body>
 </html>
