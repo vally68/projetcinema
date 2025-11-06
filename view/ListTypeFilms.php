@@ -71,7 +71,7 @@ $contenu = ob_get_clean();
     <div id="wrapper" class="container mt-4">
         <main>
             <h1 class="mb-4">Projet Cinéma</h1>
-            <h2><?= htmlspecialchars($titre_secondaire) ?></h2>
+            <h2><?= htmlspecialchars ($titre_secondaire) ?></h2>
             <?= $contenu ?>
         </main>
     </div>
