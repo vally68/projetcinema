@@ -22,7 +22,7 @@
                     >
                         <input 
                             type="hidden" 
-                            name="id_type_film" 
+                            name="id_type_film"
                             value="<?= htmlspecialchars($listgenre['id_type_film'] ?? '') ?>"
                         >
                         <button type="submit" class="btn btn-danger btn-sm">
